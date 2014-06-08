@@ -1,19 +1,23 @@
 .PHONY: all clean compile eunit test qc
+REBAR ?= ./rebar
 
 all: compile
 
+deps:
+	@${REBAR} get-deps
+
 clean:
 	rm -rf current_counterexample.eqc erl_crash.dump
-	@rebar clean
+	@${REBAR} clean
 
-compile:
-	@rebar compile
+compile: deps
+	@${REBAR} compile
 
 qc: compile
-	@rebar qc skip_deps=true
+	@${REBAR} qc skip_deps=true
 
 eunit: compile
-	@rebar eunit skip_deps=true
+	@${REBAR} eunit skip_deps=true
 
 test: eunit qc
 
