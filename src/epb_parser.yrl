@@ -52,12 +52,14 @@ Terminals
     string float integer.
 
 Rootsymbol protobuf.
+Expect 1.
 
 protobuf -> '$empty' : [].
 protobuf -> statements : '$1'.
 
 statements -> statement : ['$1'].
 statements -> statement statements : ['$1'|'$2'].
+statements -> ';' statements : '$2'.
 
 statement -> import_decl : '$1'.
 statement -> package_decl : '$1'.
