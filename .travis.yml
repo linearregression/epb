@@ -1,5 +1,8 @@
 language: erlang
 otp_release:
+   - 18.1
+   - 18.0
+   - 17.5
    - 17.4
    - 17.3
    - 17.1
@@ -8,4 +11,9 @@ otp_release:
    - R15B03
    - R15B02
    - R15B01
-script: make eunit
+script:
+  - make dialyze
+  - make test
+branches:
+  only:
+    - master
